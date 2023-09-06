@@ -1,0 +1,50 @@
+html , body{
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#calc{
+    display: flex;
+    background-color: #05445E;
+    flex-direction: column;
+    border: 2px solid black;
+    box-shadow: 0 0 5px 2px grey;
+    height: 400px;
+    width: 420px;
+    margin: auto;
+
+}
+
+.display{
+    flex-grow: 1;
+    background-color: #D4F1F4;
+    max-height:100px ;
+    margin: 10px;
+}
+
+.inputs{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+    box-sizing: border-box;
+}
+
+button{
+    width: 100px;
+    height: 50px;
+    border: 2px solid black;
+
+}
+
+#zero{
+    flex: 1 0 50%;
+}
+
+.operator{
+    background-color: #189AB4;
+}
+
+.num{
+    background-color: #75E6DA;
+}

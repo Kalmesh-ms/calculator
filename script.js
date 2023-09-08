@@ -12,7 +12,7 @@ const getNumbers = document.querySelectorAll('.num');
 
 
 getNumbers.forEach((num)=> num.addEventListener('click',()=>{
-    if (operator == 'add' && !toggle) {
+    if (operator == 'multi' || operator == 'add' && !toggle) {
         secondNumArr.push(num.textContent);
         secondNumber = parseFloat(secondNumArr.join(''));
         getDisplay.textContent = secondNumber
@@ -50,27 +50,50 @@ const equalBtn = document.querySelector('#equal');
 addBtn.addEventListener('click',(e)=>{
     operator = addBtn.id
     toggle = false;
-    operation(operator , e)
-    e.target.classList.add('active')
     console.log(`first_inAddBtn: ${firstNumber}`)
     console.log(`second_inADdBTn : ${secondNumber}`)
+    operation(operator , e)
+    e.target.classList.add('active')
+})
+
+const multiBtn = document.querySelector('#multi');
+
+multiBtn.addEventListener('click',(e)=>{
+    operator = multiBtn.id
+    toggle = false;
+    operation(operator , e)
+    e.target.classList.add('active')
+    console.log(`first_inMultiBtn: ${firstNumber}`)
+    console.log(`second_inMultiBTn : ${secondNumber}`)
 })
 
 
 function operation(operator , e){
     if ( operator == "add"){
         display(`${firstNumber}+`)
-    }
     if (operator == 'add' && e.target.classList.contains('active')){
-        display(`${firstNumber}+`)
         result = parseFloat(firstNumber) + parseFloat(secondNumber);
-        console.log(`result : ${result}`)
-        display(`${result}+`, false)
-        firstNumber = result;
-        console.log(`first_afterAddBtn: ${firstNumber}`)
-        secondNumArr = [];
-        secondNumber = 0;
-        console.log(`second_afterADdBTn : ${secondNumber}`)
+            console.log(`result : ${result}`)
+            display(`${result}+`, false)
+            firstNumber = result;
+            console.log(`first_afterAddBtn: ${firstNumber}`)
+            secondNumArr = [];
+            secondNumber = 0;
+            console.log(`second_afterADdBTn : ${secondNumber}`)
+        }
+    }
+    if ( operator == "multi"){
+        display(`${firstNumber}x`)
+    }
+    if (operator == 'multi' && e.target.classList.contains('active')){
+        result = ((parseFloat(firstNumber))*(parseFloat(secondNumber)));
+            console.log(`result : ${result}`)
+            display(`${result}x`, false)
+            firstNumber = result;
+            console.log(`first_afterMutliBtn: ${firstNumber}`)
+            secondNumArr = [];
+            secondNumber = 0;
+            console.log(`second_afterMutliBTn : ${secondNumber}`)
     }
 }
 

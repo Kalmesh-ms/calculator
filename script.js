@@ -15,7 +15,7 @@ const operationBtns = document.querySelectorAll('.operator');
 let operator;
 function display(string , bool){
     if(bool){
-    getDisplay.textContent += string;
+        getDisplay.textContent += string;
     }
     else {
         getDisplay.textContent = string;
@@ -50,10 +50,11 @@ function activeOperator (e , operationBtns){
 
 operationBtns.forEach(
     (operatorBtn)=> operatorBtn.addEventListener(('click'), 
-        (e)=>{
-            display(`${firstNumber}${e.target.textContent}`)
-            toggle = false;
-            console.log(`first_inOperatorBtn: ${firstNumber}`)
+    (e)=>{
+        if (operatorBtn.id == 'ac')return;
+        display(`${firstNumber}${e.target.textContent}`)
+        toggle = false;
+        console.log(`first_inOperatorBtn: ${firstNumber}`)
             console.log(`current_inOperatorBTn : ${currentNumber}`)
             operation(operator , e);
             operator = e.target.id
@@ -89,7 +90,7 @@ function operation(operator , e){
     if (operator == 'divide'){
         {result = ((parseFloat(firstNumber))/(parseFloat(currentNumber)));
         firstNumber = result;
-        }
+    }
     }
     if (operator == 'exp'){
         result = ((parseFloat(firstNumber))**(parseFloat(currentNumber)));
@@ -102,6 +103,7 @@ function operation(operator , e){
 operationBtns.forEach(
     (operatorBtn)=> operatorBtn.addEventListener(('click'), 
         (e)=>{
+            if (operatorBtn.id == 'ac')return;
         if (!result){
             if (operator == 'exp'){
                 display(`${firstNumber}^`, false)
@@ -117,16 +119,33 @@ operationBtns.forEach(
         }
         else{
             if (operator == 'exp'){
-                display(`${result}}^`, false)
+                display(`${result}^`, false)
             }
             else{
-                    if ( operator == 'equal'){
+                    if ( operator == 'equal' && result){
                         display(`${result}`)
+                        if ( !result ){
+                            display('* _ *')
+                        }
                     }
                     else{
                         display(`${result}${e.target.textContent}`, false)
                     }
-            }
+                }
             }
         }
-))
+        ))
+        
+        
+        
+const getACBtn = document.querySelector('#ac');
+
+getACBtn.onclick = () => {
+    firstNumArr = [];
+    firstNumber = null;
+    currentNumArr = [];
+    currentNumber = null;
+    toggle = true;
+    result = null;
+    display('')
+}

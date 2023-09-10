@@ -27,7 +27,6 @@ const getNumbers = document.querySelectorAll('.num');
 
 getNumbers.forEach((num)=> num.addEventListener('click',()=>{
     if (!toggle){
-
             currentNumArr.push(num.textContent);
             currentNumber = parseFloat(currentNumArr.join(''));
             display(`${currentNumber}`);
@@ -78,11 +77,23 @@ function operation(operator , e){
     }
     if (operator == 'multi'){
         result = ((parseFloat(firstNumber))*(parseFloat(currentNumber)));
-        console.log(`result : ${result}`)
-        // display(`${result}x`, false)
         firstNumber = result;
+        console.log(`result : ${result}`)
         console.log(`first_afterMutliBtn: ${firstNumber}`)
         console.log(`current_afterMutliBTn : ${currentNumber}`)
+    }
+    if (operator == 'sub'){
+        result = ((parseFloat(firstNumber))-(parseFloat(currentNumber)));
+        firstNumber = result;
+    }
+    if (operator == 'divide'){
+        {result = ((parseFloat(firstNumber))/(parseFloat(currentNumber)));
+        firstNumber = result;
+        }
+    }
+    if (operator == 'exp'){
+        result = ((parseFloat(firstNumber))**(parseFloat(currentNumber)));
+        firstNumber = result;
     }
     currentNumArr = [];
     currentNumber = null;
@@ -91,8 +102,31 @@ function operation(operator , e){
 operationBtns.forEach(
     (operatorBtn)=> operatorBtn.addEventListener(('click'), 
         (e)=>{
-            if (!result){
-                display(`${firstNumber}${e.target.textContent}`, false)
+        if (!result){
+            if (operator == 'exp'){
+                display(`${firstNumber}^`, false)
             }
-            else {display(`${result}${e.target.textContent}`, false)}
-        }))
+            else {
+                if ( operator == 'equal'){
+                    display('All ok?')
+                }
+                else{
+                display(`${firstNumber}${e.target.textContent}`, false)
+                }
+            }
+        }
+        else{
+            if (operator == 'exp'){
+                display(`${result}}^`, false)
+            }
+            else{
+                    if ( operator == 'equal'){
+                        display(`${result}`)
+                    }
+                    else{
+                        display(`${result}${e.target.textContent}`, false)
+                    }
+            }
+            }
+        }
+))

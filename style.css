@@ -3,6 +3,7 @@ html , body{
     height: 100%;
     display: flex;
     flex-direction: column;
+    font-family: 'Orbitron', sans-serif;
 }
 #calc{
     display: flex;
@@ -20,12 +21,18 @@ html , body{
     display: block;
     flex-grow: 1;
     background-color: #D4F1F4;
-    height:100px ;
+    height:fit-content ;
     margin: 10px;
+    flex-wrap: wrap;
 }
 
 .log{
-    height: 30px;
+    height: 40px;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    font-size: x-large;
+    text-shadow:2px 2px #05445E
 }
 .current{
     height: 70px;
@@ -34,7 +41,6 @@ html , body{
     align-items: end;
     font-size: xx-large;
     text-shadow:2px 2px #05445E
-
 }
 .inputs{
     display: flex;

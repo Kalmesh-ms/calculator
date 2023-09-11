@@ -8,36 +8,46 @@ let toggle = true;
 
 let result;
 
-const getDisplay = document.querySelector('.display > .current')
+
+
+const getDisplayLog = document.querySelector('.display > .log')
+const getDisplayCurr = document.querySelector('.display > .current')
 
 const operationBtns = document.querySelectorAll('.operator');
 
 let operator;
-function display(string , bool){
+function displayLog(string , bool){
     if(bool){
-        getDisplay.textContent += string;
+        getDisplayLog.textContent += string;
     }
     else {
-        getDisplay.textContent = string;
+        getDisplayLog.textContent = string;
     }
 }
+
+// function displayCurrent (string , bool){};
 
 const getNumbers = document.querySelectorAll('.num');
 
 
 getNumbers.forEach((num)=> num.addEventListener('click',()=>{
     if (!toggle){
+       {
             currentNumArr.push(num.textContent);
             currentNumber = parseFloat(currentNumArr.join(''));
-            display(`${currentNumber}`);
+            displayLog(`${currentNumber}`);
             console.log(`current_InGetNum : ${currentNumber}`)
         }
+        }
     if(toggle){
+        if (num.id ==  'dot' && block)onceDeciPoint(num , arr);
+        else {
         console.log(`${num.textContent}`)
         firstNumArr.push(num.textContent);
         firstNumber = parseFloat(firstNumArr.join(''))
-        display(`${firstNumber}`);
+        displayLog(`${firstNumber}`);
         console.log(`first_inGetNum: ${firstNumber}`)
+        }
     }
 }))
 
@@ -52,7 +62,7 @@ operationBtns.forEach(
     (operatorBtn)=> operatorBtn.addEventListener(('click'), 
     (e)=>{
         if (operatorBtn.id == 'ac')return;
-        display(`${firstNumber}${e.target.textContent}`)
+        displayLog(`${firstNumber}${e.target.textContent}`)
         toggle = false;
         console.log(`first_inOperatorBtn: ${firstNumber}`)
             console.log(`current_inOperatorBTn : ${currentNumber}`)
@@ -106,30 +116,30 @@ operationBtns.forEach(
             if (operatorBtn.id == 'ac')return;
         if (!result){
             if (operator == 'exp'){
-                display(`${firstNumber}^`, false)
+                displayLog(`${firstNumber}^`, false)
             }
             else {
                 if ( operator == 'equal'){
-                    display('All ok?')
+                    displayLog('Did You Know.. ')
                 }
                 else{
-                display(`${firstNumber}${e.target.textContent}`, false)
+                displayLog(`${firstNumber}${e.target.textContent}`, false)
                 }
             }
         }
         else{
             if (operator == 'exp'){
-                display(`${result}^`, false)
+                displayLog(`${result}^`, false)
             }
             else{
                     if ( operator == 'equal' && result){
-                        display(`${result}`)
+                        displayLog(`${result}`)
                         if ( !result ){
-                            display('* _ *')
+                            displayLog('* _ *')
                         }
                     }
                     else{
-                        display(`${result}${e.target.textContent}`, false)
+                        displayLog(`${result}${e.target.textContent}`, false)
                     }
                 }
             }
@@ -147,5 +157,5 @@ getACBtn.onclick = () => {
     currentNumber = null;
     toggle = true;
     result = null;
-    display('')
+    displayLog('')
 }

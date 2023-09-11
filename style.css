@@ -25,6 +25,7 @@ html , body{
     margin: 10px;
     flex-wrap: wrap;
     word-wrap: break-word;
+    box-shadow: 0 0 3px 4px black inset;
 }
 
 .log{

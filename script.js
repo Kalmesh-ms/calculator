@@ -40,19 +40,13 @@ function activeOperator (e , operationBtns){
     e.target.classList.add('active');
 }
 
-function clear(arr , num ){
-    arr.pop();
-    num =parseFloat( arr.join(''))
-    console.log('popping')
-}
-
 dotButton.onclick = () => (dotButton.disabled = true)
 
 getNumbers.forEach((num)=> num.addEventListener('click',()=>{
     if (!toggle){
         currentNumArr.push(num.textContent);
-            currentNumber = parseFloat(currentNumArr.join(''));
-            displayCurr(`${currentNumber}`);
+        currentNumber = parseFloat(currentNumArr.join(''));
+        displayCurr(`${currentNumber}`);
         }
         if(toggle){
             firstNumArr.push(num.textContent);
@@ -60,6 +54,32 @@ getNumbers.forEach((num)=> num.addEventListener('click',()=>{
             displayCurr(`${firstNumber}`);
         }
     }))
+
+getCBtn.addEventListener('click',() => {
+    console.log('popping babs')
+    if (!toggle){
+        currentNumArr.pop();
+        currentNumber = parseFloat(currentNumArr.join(''));
+        if(currentNumber){
+            displayCurr(`${currentNumber}`);
+        }
+        else {
+            displayCurr('0')
+        }
+        }
+        if(toggle){
+            console.log('trying popping babs')
+            firstNumArr.pop();
+            firstNumber = parseFloat(firstNumArr.join(''))
+            if(firstNumber){
+                displayCurr(`${firstNumber}`);
+            }
+            else {
+                displayCurr('0')
+            }
+        }
+    }
+)
     
 function operation(operator){
     if (!currentNumber && currentNumber !== 0)  return;
@@ -93,11 +113,13 @@ operationBtns.forEach(
     if (operatorBtn.id == 'del')return;
     if (currentNumber){
         displayLog(`${currentNumber}${e.target.textContent}`, true);
+        displayCurr("")
     }
     if(firstNumber && !currentNumber){
             displayLog(`${firstNumber}${e.target.textContent}`);
-        }
+            displayCurr("")
         
+        }
         toggle = false;
         operation(operator);
         operator = e.target.id

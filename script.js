@@ -5,6 +5,7 @@ const dotButton = document.querySelector('#dot')
 const getNumbers = document.querySelectorAll('.num');
 const getACBtn = document.querySelector('#ac');
 const getCBtn = document.querySelector('#del')
+const getToggleSignBtn = document.querySelector('#toggleSign')
 
 let firstNumArr = [];
 let firstNumber;
@@ -55,6 +56,33 @@ getNumbers.forEach((num)=> num.addEventListener('click',()=>{
         }
     }))
 
+    
+function operation(operator){
+    if (!currentNumber && currentNumber !== 0)  return;
+    if (operator == 'add'){
+    result = parseFloat(firstNumber) + parseFloat(currentNumber);
+}
+if (operator == 'multi'){
+    result = ((parseFloat(firstNumber))*(parseFloat(currentNumber)));
+}
+if (operator == 'sub'){
+    result = ((parseFloat(firstNumber))-(parseFloat(currentNumber)));
+}
+if (operator == 'divide'){
+    {result = ((parseFloat(firstNumber))/(parseFloat(currentNumber)));
+}
+}
+if (operator == 'exp'){
+    result = ((parseFloat(firstNumber))**(parseFloat(currentNumber)));
+}
+if (operator == 'percent'){
+    result = ((parseFloat(firstNumber))/(parseFloat(currentNumber))*100);
+}
+firstNumber = result;
+currentNumArr = [];
+currentNumber = null;
+}
+
 getCBtn.addEventListener('click',() => {
     if (!toggle){
         currentNumArr.pop();
@@ -78,46 +106,34 @@ getCBtn.addEventListener('click',() => {
         }
     }
 )
-    
-function operation(operator){
-    if (!currentNumber && currentNumber !== 0)  return;
-    if (operator == 'add'){
-        result = parseFloat(firstNumber) + parseFloat(currentNumber);
-    }
-    if (operator == 'multi'){
-        result = ((parseFloat(firstNumber))*(parseFloat(currentNumber)));
-    }
-    if (operator == 'sub'){
-        result = ((parseFloat(firstNumber))-(parseFloat(currentNumber)));
-    }
-    if (operator == 'divide'){
-        {result = ((parseFloat(firstNumber))/(parseFloat(currentNumber)));
-    }
-    }
-    if (operator == 'exp'){
-        result = ((parseFloat(firstNumber))**(parseFloat(currentNumber)));
-    }
-    firstNumber = result;
-    currentNumArr = [];
-    currentNumber = null;
-}
-    
-    
+
 operationBtns.forEach(
     (operatorBtn)=> operatorBtn.addEventListener(('click'), 
     (e)=>{
 
     if (operatorBtn.id == 'ac')return;
     if (operatorBtn.id == 'del')return;
+    if (operatorBtn.id == 'toggleSign'){
+        if(currentNumber){
+            currentNumber = -currentNumber;
+            displayCurr(`${currentNumber}`)
+        }
+        if(firstNumber){
+            firstNumber = -firstNumber;
+            displayCurr(`${firstNumber}`)
+        }
+    };
     if ( operatorBtn.id == 'equal'){
         {displayLog('')
         displayCurr('')}
     };
     if (currentNumber && operatorBtn.id !== 'equal'){
+        console.log('its Here in 1')
         displayLog(`${currentNumber}${e.target.textContent}`, true);
         displayCurr("")
     }
     if(firstNumber && !currentNumber && operatorBtn.id !== 'equal'){
+        console.log('its Here in 1')
             displayLog(`${firstNumber}${e.target.textContent}`);
             displayCurr("")
         }
@@ -129,12 +145,13 @@ operationBtns.forEach(
 )
 )
              
-
+//DISPLAY
 operationBtns.forEach(
     (operatorBtn)=> operatorBtn.addEventListener(('click'), 
         (e)=>{
             if (operatorBtn.id == 'ac')return;
             if (operatorBtn.id == 'del')return;
+            if (operatorBtn.id = 'toggleSign')return;
         if (!result ){
             if (operator == 'exp'){
                 displayLog(`${firstNumber}^`, false)

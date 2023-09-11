@@ -54,19 +54,26 @@ html , body{
 
 button{
     width: 100px;
-    height: 50px;
+    height: 80px;
     border: 2px solid black;
 
 }
 
 .operator{
-    background-color: #189AB4;
+    background-color: #5adccf;
 }
 
 .num{
-    background-color: #75E6DA;
+    background-color: aqua
 }
 
-#equal{
+#ac , #del{
+    width: 200px;
+    height: 60px;
+    background-color: #189AB4;
+    font-size: medium;
+}
+
+#zero {
     flex-grow: 1;
 }

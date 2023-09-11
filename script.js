@@ -56,7 +56,6 @@ getNumbers.forEach((num)=> num.addEventListener('click',()=>{
     }))
 
 getCBtn.addEventListener('click',() => {
-    console.log('popping babs')
     if (!toggle){
         currentNumArr.pop();
         currentNumber = parseFloat(currentNumArr.join(''));
@@ -68,7 +67,6 @@ getCBtn.addEventListener('click',() => {
         }
         }
         if(toggle){
-            console.log('trying popping babs')
             firstNumArr.pop();
             firstNumber = parseFloat(firstNumArr.join(''))
             if(firstNumber){
@@ -111,14 +109,17 @@ operationBtns.forEach(
 
     if (operatorBtn.id == 'ac')return;
     if (operatorBtn.id == 'del')return;
-    if (currentNumber){
+    if ( operatorBtn.id == 'equal'){
+        {displayLog('')
+        displayCurr('')}
+    };
+    if (currentNumber && operatorBtn.id !== 'equal'){
         displayLog(`${currentNumber}${e.target.textContent}`, true);
         displayCurr("")
     }
-    if(firstNumber && !currentNumber){
+    if(firstNumber && !currentNumber && operatorBtn.id !== 'equal'){
             displayLog(`${firstNumber}${e.target.textContent}`);
             displayCurr("")
-        
         }
         toggle = false;
         operation(operator);

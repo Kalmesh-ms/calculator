@@ -56,6 +56,18 @@ getNumbers.forEach((num)=> num.addEventListener('click',()=>{
         }
     }))
 
+getToggleSignBtn.addEventListener('click',()=>{
+    if (currentNumber){
+        currentNumber = -currentNumber;
+        displayCurr(`${currentNumber}`);
+    }
+    if (firstNumber){
+        firstNumber = -firstNumber;
+        displayCurr(`${firstNumber}`);
+    }
+})
+    
+
     
 function operation(operator){
     if (!currentNumber && currentNumber !== 0)  return;
@@ -113,27 +125,15 @@ operationBtns.forEach(
 
     if (operatorBtn.id == 'ac')return;
     if (operatorBtn.id == 'del')return;
-    if (operatorBtn.id == 'toggleSign'){
-        if(currentNumber){
-            currentNumber = -currentNumber;
-            displayCurr(`${currentNumber}`)
-        }
-        if(firstNumber){
-            firstNumber = -firstNumber;
-            displayCurr(`${firstNumber}`)
-        }
-    };
     if ( operatorBtn.id == 'equal'){
         {displayLog('')
         displayCurr('')}
     };
     if (currentNumber && operatorBtn.id !== 'equal'){
-        console.log('its Here in 1')
         displayLog(`${currentNumber}${e.target.textContent}`, true);
         displayCurr("")
     }
     if(firstNumber && !currentNumber && operatorBtn.id !== 'equal'){
-        console.log('its Here in 1')
             displayLog(`${firstNumber}${e.target.textContent}`);
             displayCurr("")
         }
@@ -151,15 +151,18 @@ operationBtns.forEach(
         (e)=>{
             if (operatorBtn.id == 'ac')return;
             if (operatorBtn.id == 'del')return;
-            if (operatorBtn.id = 'toggleSign')return;
-        if (!result ){
+            
+        if (!result){
             if (operator == 'exp'){
                 displayLog(`${firstNumber}^`, false)
             }
             else {
-                if ( operator == 'equal'){
-                    displayLog("Hmmmmmm...")
-                    displayCurr(`Interesting..!`)
+                if ( operator == 'equal' ){
+                    if (result == 0){displayCurr('0')}
+                    else{
+                    displayLog("I guess you forgot Something... ")
+                    displayCurr(`Here..!`)
+                    }
                 }
                 else{
                 displayLog(`${firstNumber}${e.target.textContent}`, false)

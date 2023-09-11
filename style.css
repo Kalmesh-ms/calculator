@@ -4,13 +4,15 @@ html , body{
     display: flex;
     flex-direction: column;
     font-family:monospace,'Courier New', Courier;
+    background-color: whitesmoke
 }
 #calc{
     display: flex;
     background-color: #05445E;
     flex-direction: column;
     border: 1px solid black;
-    box-shadow: 10px 8px grey;
+    border-radius: 8px;
+    box-shadow: 10px 8px black;
     height: fit-content;
     width: 420px;
     margin: auto;
@@ -20,6 +22,7 @@ html , body{
 .display{
     display: block;
     flex-grow: 1;
+    border-radius: 8px;
     background-color: #D4F1F4;
     height:fit-content ;
     margin: 10px;
@@ -56,10 +59,13 @@ button{
     width: 100px;
     height: 80px;
     border: 2px solid black;
+    border-radius: 8px;
+    font-size: large;
+    font-weight: 700;
 
 }
 
-.operator{
+.operator , .toggle{
     background-color: #5adccf;
 }
 
@@ -71,7 +77,8 @@ button{
     width: 200px;
     height: 60px;
     background-color: #189AB4;
-    font-size: medium;
+    
+
 }
 
 #zero {

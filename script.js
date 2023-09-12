@@ -42,9 +42,6 @@ function activeOperator (e , operationBtns){
     e.target.classList.add('active');
 }
 
-dotButton.onclick = () => (dotButton.disabled = true)
-
-
 
 window.addEventListener('keydown', (e)=>{
     const key = document.querySelector(`.num[data-key="${e.keyCode}"]`)
@@ -85,24 +82,24 @@ function operation(operator){
     }
     if (operator == 'multi'){
     result = ((parseFloat(firstNumber))*(parseFloat(currentNumber)));
-}
-if (operator == 'sub'){
-    result = ((parseFloat(firstNumber))-(parseFloat(currentNumber)));
-}
-if (operator == 'divide'){
-    {result = ((parseFloat(firstNumber))/(parseFloat(currentNumber)));
-}
-}
-if (operator == 'exp'){
-    result = ((parseFloat(firstNumber))**(parseFloat(currentNumber)));
-}
-if (operator == 'percent'){
-    result = ((parseFloat(firstNumber))/(parseFloat(currentNumber))*100);
-}
-firstNumber = result;
-currentNumArr = [];
-currentNumber = null;
-}
+    }
+    if (operator == 'sub'){
+        result = ((parseFloat(firstNumber))-(parseFloat(currentNumber)));
+    }
+    if (operator == 'divide'){
+        {result = ((parseFloat(firstNumber))/(parseFloat(currentNumber)));
+    }
+    }
+    if (operator == 'exp'){
+        result = ((parseFloat(firstNumber))**(parseFloat(currentNumber)));
+    }
+    if (operator == 'percent'){
+        result = ((parseFloat(firstNumber))/(parseFloat(currentNumber))*100);
+    }
+    firstNumber = result;
+    currentNumArr = [];
+    currentNumber = null;
+    }
 
 getToggleSignBtn.addEventListener('click',(e)=>{
     e.target.classList.add('clicked')

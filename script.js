@@ -6,6 +6,7 @@ const getNumbers = document.querySelectorAll('.num');
 const getACBtn = document.querySelector('#ac');
 const getCBtn = document.querySelector('#del')
 const getToggleSignBtn = document.querySelector('#toggleSign')
+const keys = document.querySelectorAll('button')
 
 let firstNumArr = [];
 let firstNumber;
@@ -43,7 +44,27 @@ function activeOperator (e , operationBtns){
 
 dotButton.onclick = () => (dotButton.disabled = true)
 
+
+
+window.addEventListener('keydown', (e)=>{
+    const key = document.querySelector(`.num[data-key="${e.keyCode}"]`)
+    if (!key)return;
+    key.classList.add('clicked')
+    playSound();
+    if (!toggle){
+        currentNumArr.push(key.textContent);
+        currentNumber = parseFloat(currentNumArr.join(''));
+        displayCurr(`${currentNumber}`);
+    }
+    if(toggle){
+        firstNumArr.push(key.textContent);
+        firstNumber = parseFloat(firstNumArr.join(''))
+        displayCurr(`${firstNumber}`);
+    }
+})
+
 getNumbers.forEach((num)=> num.addEventListener('click',()=>{
+    num.classList.add('clicked')
     if (!toggle){
         currentNumArr.push(num.textContent);
         currentNumber = parseFloat(currentNumArr.join(''));
@@ -55,26 +76,14 @@ getNumbers.forEach((num)=> num.addEventListener('click',()=>{
             displayCurr(`${firstNumber}`);
         }
     }))
-
-getToggleSignBtn.addEventListener('click',()=>{
-    if (currentNumber){
-        currentNumber = -currentNumber;
-        displayCurr(`${currentNumber}`);
-    }
-    if (firstNumber){
-        firstNumber = -firstNumber;
-        displayCurr(`${firstNumber}`);
-    }
-})
     
-
     
 function operation(operator){
     if (!currentNumber && currentNumber !== 0)  return;
     if (operator == 'add'){
-    result = parseFloat(firstNumber) + parseFloat(currentNumber);
-}
-if (operator == 'multi'){
+        result = parseFloat(firstNumber) + parseFloat(currentNumber);
+    }
+    if (operator == 'multi'){
     result = ((parseFloat(firstNumber))*(parseFloat(currentNumber)));
 }
 if (operator == 'sub'){
@@ -95,7 +104,20 @@ currentNumArr = [];
 currentNumber = null;
 }
 
-getCBtn.addEventListener('click',() => {
+getToggleSignBtn.addEventListener('click',(e)=>{
+    e.target.classList.add('clicked')
+    if (firstNumber){
+        firstNumber = -firstNumber;
+        displayCurr(`${firstNumber}`);
+    }
+    if (currentNumber){
+        currentNumber = -currentNumber;
+        displayCurr(`${currentNumber}`);
+    }
+})
+
+getCBtn.addEventListener('click',(e) => {
+    e.target.classList.add('clicked')
     if (!toggle){
         currentNumArr.pop();
         currentNumber = parseFloat(currentNumArr.join(''));
@@ -122,7 +144,7 @@ getCBtn.addEventListener('click',() => {
 operationBtns.forEach(
     (operatorBtn)=> operatorBtn.addEventListener(('click'), 
     (e)=>{
-
+    e.target.classList.add('clicked')
     if (operatorBtn.id == 'ac')return;
     if (operatorBtn.id == 'del')return;
     if ( operatorBtn.id == 'equal'){
@@ -160,7 +182,7 @@ operationBtns.forEach(
                 if ( operator == 'equal' ){
                     if (result == 0){displayCurr('0')}
                     else{
-                    displayLog("I guess you forgot Something... ")
+                    displayLog("Did you forgot Something...? ")
                     displayCurr(`Here..!`)
                     }
                 }
@@ -190,7 +212,8 @@ operationBtns.forEach(
         
         
 
-getACBtn.onclick = () => {
+getACBtn.onclick = (e) => {
+    e.target.classList.add('clicked')
     firstNumArr = [];
     firstNumber = null;
     currentNumArr = [];
@@ -200,3 +223,18 @@ getACBtn.onclick = () => {
     displayLog('')
     displayCurr('0')
 }
+
+function removeTransition(e){
+    if(e.propertyName !== 'transform')return;
+    this.classList.remove('clicked')
+}
+
+function playSound(){
+    const audio = document.querySelector('audio');
+    if(!audio)return;
+    audio.currentTime = 0;
+    audio.play();
+}
+
+keys.forEach((button)=>button.addEventListener('click' , playSound))
+keys.forEach((button => button.addEventListener('transitionend' , removeTransition)))

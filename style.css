@@ -62,7 +62,7 @@ button{
     border-radius: 8px;
     font-size: large;
     font-weight: 700;
-
+    transition: all 0.08s;
 }
 
 .operator , .toggle{
@@ -77,10 +77,15 @@ button{
     width: 200px;
     height: 60px;
     background-color: #189AB4;
-    
-
 }
 
 #zero {
     flex-grow: 1;
+}
+
+.clicked {
+    transform: scale(0.9);
+    border-color: antiquewhite;
+    box-shadow: 0 0 10px antiquewhite;
+    background-color: whitesmoke;
 }

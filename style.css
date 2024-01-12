@@ -6,6 +6,7 @@ html , body{
     font-family:monospace,'Courier New', Courier;
     background-color: whitesmoke
 }
+
 #calc{
     display: flex;
     background-color: #05445E;
@@ -79,8 +80,10 @@ button{
     background-color: #189AB4;
 }
 
+
+
 #zero {
-    flex-grow: 1;
+       flex-grow: 1;
 }
 
 .clicked {

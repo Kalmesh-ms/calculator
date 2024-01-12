@@ -93,9 +93,6 @@ function operation(operator){
     if (operator == 'exp'){
         result = ((parseFloat(firstNumber))**(parseFloat(currentNumber)));
     }
-    if (operator == 'percent'){
-        result = ((parseFloat(firstNumber))/(parseFloat(currentNumber))*100);
-    }
     firstNumber = result;
     currentNumArr = [];
     currentNumber = null;
@@ -179,8 +176,8 @@ operationBtns.forEach(
                 if ( operator == 'equal' ){
                     if (result == 0){displayCurr('0')}
                     else{
-                    displayLog("Did you forgot Something...? ")
-                    displayCurr(`Here..!`)
+                    displayLog("Math Error")
+                    displayCurr(`:!`)
                     }
                 }
                 else{
